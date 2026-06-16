@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="scroll-smooth">
+<html lang="pt-PT" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arquivo Histórico: Documentário Oficial (1945) - Trabalho Escolar</title>
-    <meta name="description" content="Exibição e contextualização do documentário oficial das Forças Aliadas sobre os campos de concentração, utilizado como prova em Nuremberg.">
+    <title>Arquivo Histórico e Militar (1939-1945) - Trabalho Escolar</title>
+    <meta name="description" content="Exibição e contextualização de documentários e filmagens de combate da Segunda Guerra Mundial para fins de estudo histórico.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
@@ -39,10 +39,10 @@
         ::-webkit-scrollbar-thumb { background: #333; border-radius: 5px; }
         ::-webkit-scrollbar-thumb:hover { background: #555; }
 
-        /* Estilo do Reprodutor de Vídeo */
+        /* Estilos de Vídeo */
         .video-wrapper {
             position: relative;
-            padding-bottom: 75%; /* Proporção 4:3 clássica de filmes antigos */
+            padding-bottom: 75%;
             height: 0;
             overflow: hidden;
             background: #000;
@@ -51,10 +51,29 @@
             border-radius: 4px;
         }
         @media (min-width: 1024px) {
-            .video-wrapper { padding-bottom: 56.25%; } /* Muda para 16:9 em telas grandes para preencher melhor */
+            .video-wrapper { padding-bottom: 56.25%; }
         }
-        
-        .video-wrapper iframe {
+        .video-wrapper iframe, .video-wrapper video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Estilo para vídeos verticais (TikTok/Reels format) */
+        .video-vertical-wrapper {
+            position: relative;
+            padding-bottom: 177.77%; /* Proporção 16:9 vertical */
+            height: 0;
+            overflow: hidden;
+            background: #000;
+            border: 1px solid #333;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
+        .video-vertical-wrapper video {
             position: absolute;
             top: 0;
             left: 0;
@@ -68,7 +87,6 @@
             box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
         }
 
-        /* Animação do botão do Gatekeeper */
         @keyframes pulse-warning {
             0% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.4); }
             70% { box-shadow: 0 0 0 15px rgba(220, 38, 38, 0); }
@@ -96,154 +114,214 @@
 </head>
 <body class="antialiased selection:bg-zinc-700 selection:text-white no-scroll">
 
-    <!-- TELA DE ENTRADA / GATEKEEPER DE CONTEÚDO SENSÍVEL -->
+    <!-- TELA DE ENTRADA / GATEKEEPER -->
     <div id="gatekeeper" class="fixed inset-0 z-[100] bg-black flex flex-col items-center justify-center p-6 text-center transition-opacity duration-1000 ease-in-out">
         <div class="scanline"></div>
         <div class="max-w-3xl w-full flex flex-col items-center relative z-10">
             
             <i class="fas fa-eye-slash text-5xl md:text-6xl text-red-600 mb-6 drop-shadow-[0_0_15px_rgba(220,38,38,0.5)]"></i>
             
-            <h1 class="text-3xl md:text-5xl text-white font-cinzel font-bold mb-4 tracking-widest uppercase">Aviso de Conteúdo Sensível</h1>
+            <h1 class="text-3xl md:text-5xl text-white font-cinzel font-bold mb-4 tracking-widest uppercase">Aviso de Conteúdo Histórico e Sensível</h1>
             <div class="w-20 h-1 bg-red-700 mb-8"></div>
             
             <div class="bg-[#0a0a0a] border border-red-900/50 p-6 md:p-8 rounded-lg mb-10 shadow-2xl text-left">
                 <p class="text-zinc-300 font-mono text-sm md:text-base leading-relaxed mb-4">
-                    Este portal escolar contém o documentário histórico <strong>"Nazi Concentration Camps" (1945)</strong>, produzido pelo Exército dos Estados Unidos e utilizado como prova criminal nos Julgamentos de Nuremberg.
+                    Este portal escolar é um arquivo videográfico de estudo. Contém materiais militares brutos da 2ª Guerra Mundial e o documentário oficial utilizado como prova criminal nos Julgamentos de Nuremberg.
                 </p>
                 <div class="bg-red-950/20 p-4 border-l-4 border-red-600 rounded mb-4">
                     <p class="text-white font-bold text-sm md:text-base">
-                        <i class="fas fa-exclamation-triangle mr-2 text-red-500"></i> ATENÇÃO: IMAGENS GRÁFICAS E PERTURBADORAS
+                        <i class="fas fa-exclamation-triangle mr-2 text-red-500"></i> ATENÇÃO AO ESTUDANTE
                     </p>
                     <p class="text-zinc-400 text-xs md:text-sm mt-2">
-                        O filme a seguir exibe imagens reais e sem censura de atrocidades, vítimas e cenas de extrema crueldade humana registradas durante a libertação dos campos de concentração. <strong>Não é recomendado para pessoas sensíveis ou menores de idade sem acompanhamento.</strong>
+                        Os materiais aqui expostos contêm cenas reais de guerra, táticas de combate e imagens perturbadoras do Holocausto. Estes ficheiros são apresentados estritamente para <strong>análise educacional</strong> e repúdio ao extremismo.
                     </p>
                 </div>
-                <p class="text-zinc-500 text-xs mt-4 text-center font-bold uppercase">
-                    O estudo destas imagens serve exclusivamente para garantir que a memória histórica não seja apagada ou negada.
-                </p>
             </div>
 
             <button id="enter-btn" class="btn-warning-pulse bg-transparent hover:bg-red-900/30 text-red-500 hover:text-white font-bold py-4 px-10 rounded border-2 border-red-700 uppercase tracking-widest flex items-center gap-3 transition-colors duration-300">
                 <span>Compreendo e desejo acessar o arquivo</span>
                 <i class="fas fa-unlock"></i>
             </button>
-            
-            <a href="javascript:history.back()" class="mt-6 text-zinc-500 hover:text-zinc-300 text-xs underline font-mono tracking-widest">
-                Retornar à página anterior
-            </a>
         </div>
     </div>
 
-    <!-- Cabeçalho de Navegação Simples -->
+    <!-- Navegação Superior -->
     <nav class="w-full bg-black/80 backdrop-blur-md border-b border-zinc-900 sticky top-0 z-40">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="flex items-center gap-3">
                 <i class="fas fa-film text-zinc-500 text-xl"></i>
-                <h1 class="text-sm md:text-lg font-cinzel font-bold text-white tracking-widest">ARQUIVO DE PROVAS - 1945</h1>
+                <h1 class="text-sm md:text-lg font-cinzel font-bold text-white tracking-widest">ARQUIVO DE PROVAS E COMBATE</h1>
             </div>
-            <div class="text-[10px] md:text-xs font-mono text-zinc-500 tracking-[0.2em] border border-zinc-800 px-3 py-1 rounded bg-[#0a0a0a]">
-                US GOV. ARCHIVE • PUBLIC DOMAIN
+            <div class="flex gap-4">
+                <a href="#provas" class="text-xs font-mono text-zinc-400 hover:text-white transition-colors">I. DOCUMENTÁRIO</a>
+                <a href="#combate" class="text-xs font-mono text-zinc-400 hover:text-white transition-colors">II. ARQUIVOS BRUTOS</a>
             </div>
         </div>
     </nav>
 
     <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
 
-        <!-- Título da Página -->
-        <header class="text-center mb-12">
-            <span class="text-red-600 font-bold tracking-widest text-xs md:text-sm uppercase font-mono"><i class="fas fa-folder-open mr-2"></i> Documento de Estudo #02</span>
-            <h2 class="text-3xl md:text-5xl text-white font-cinzel font-bold mt-4 mb-4">Campos de Concentração Nazistas</h2>
-            <p class="text-zinc-400 max-w-2xl mx-auto font-mono text-sm">
-                Relatório Cinematográfico Oficial da Força Expedicionária Aliada (AEF) compilado pelo Diretor George Stevens.
-            </p>
-        </header>
+        <!-- PARTE I: O DOCUMENTÁRIO OFICIAL -->
+        <section id="provas" class="scroll-mt-32 mb-24">
+            <header class="text-center mb-12">
+                <span class="text-red-600 font-bold tracking-widest text-xs md:text-sm uppercase font-mono"><i class="fas fa-gavel mr-2"></i> Documento de Estudo #01</span>
+                <h2 class="text-3xl md:text-5xl text-white font-cinzel font-bold mt-4 mb-4">Campos de Concentração Nazistas</h2>
+                <p class="text-zinc-400 max-w-2xl mx-auto font-mono text-sm">
+                    Relatório Cinematográfico Oficial da Força Expedicionária Aliada (AEF) (1945).
+                </p>
+            </header>
 
-        <!-- Container do Reprodutor e Ficha Técnica -->
-        <div class="grid lg:grid-cols-3 gap-8">
-            
-            <!-- Coluna Principal (Vídeo) -->
-            <div class="lg:col-span-2 space-y-4">
-                <div class="video-wrapper">
-                    <!-- Embed oficial do Internet Archive -->
-                    <iframe src="https://archive.org/embed/nazi_concentration_camps" width="640" height="480" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen></iframe>
-                </div>
-                
-                <div class="flex items-center justify-between bg-[#111] border border-zinc-800 p-3 rounded text-xs font-mono text-zinc-500">
-                    <span class="flex items-center gap-2"><i class="fas fa-video text-zinc-400"></i> Fonte: Internet Archive</span>
-                    <span>Duração: 59 min</span>
-                </div>
-            </div>
-
-            <!-- Coluna Lateral (Dossiê Informativo) -->
-            <div class="lg:col-span-1 space-y-6">
-                <div class="dossier-border p-6 rounded-lg">
-                    <h3 class="text-white font-bold font-cinzel text-xl mb-4 border-b border-zinc-800 pb-2">Ficha do Documento</h3>
-                    <ul class="space-y-4 font-mono text-xs md:text-sm">
-                        <li class="flex flex-col">
-                            <span class="text-zinc-500 uppercase tracking-wider mb-1">Título Original</span>
-                            <span class="text-zinc-300">Nazi Concentration Camps</span>
-                        </li>
-                        <li class="flex flex-col">
-                            <span class="text-zinc-500 uppercase tracking-wider mb-1">Ano de Produção</span>
-                            <span class="text-zinc-300">1945</span>
-                        </li>
-                        <li class="flex flex-col">
-                            <span class="text-zinc-500 uppercase tracking-wider mb-1">Produção</span>
-                            <span class="text-zinc-300">U.S. Counsel for Prosecution of Axis Criminality</span>
-                        </li>
-                        <li class="flex flex-col">
-                            <span class="text-zinc-500 uppercase tracking-wider mb-1">Objetivo Original</span>
-                            <span class="text-red-400 font-bold">Prova Material (Julgamentos de Nuremberg)</span>
-                        </li>
-                    </ul>
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Coluna Principal (Vídeo do Archive.org) -->
+                <div class="lg:col-span-2 space-y-4">
+                    <div class="video-wrapper border-2 border-red-900/30">
+                        <iframe src="https://archive.org/embed/nazi_concentration_camps" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen></iframe>
+                    </div>
+                    <div class="flex items-center justify-between bg-[#111] border border-zinc-800 p-3 rounded text-xs font-mono text-zinc-500">
+                        <span class="flex items-center gap-2"><i class="fas fa-university text-zinc-400"></i> Acervo: Tribunal de Nuremberg</span>
+                        <span>Prova Histórica</span>
+                    </div>
                 </div>
 
-                <div class="dossier-border p-6 rounded-lg bg-black">
-                    <h3 class="text-white font-bold font-cinzel text-xl mb-3 flex items-center gap-2">
-                        <i class="fas fa-quote-left text-zinc-600 text-sm"></i> A Ordem
-                    </h3>
-                    <p class="text-zinc-400 italic text-sm leading-relaxed border-l-2 border-zinc-700 pl-3">
-                        "Ordeno que tudo seja documentado — os filmes, as fotografias, os testemunhos. Porque em algum momento da história, algum bastardo vai se levantar e dizer que isso nunca aconteceu."
-                    </p>
-                    <p class="text-zinc-500 text-xs font-mono mt-3 uppercase tracking-widest text-right">
-                        - General Dwight D. Eisenhower (1945)
-                    </p>
+                <!-- Dossiê Informativo -->
+                <div class="lg:col-span-1 space-y-6">
+                    <div class="dossier-border p-6 rounded-lg">
+                        <h3 class="text-white font-bold font-cinzel text-xl mb-4 border-b border-zinc-800 pb-2">Contexto Escolar</h3>
+                        <p class="text-zinc-400 text-sm leading-relaxed mb-4">
+                            Este filme foi compilado pelo Diretor George Stevens, sob ordem militar dos EUA. O objetivo principal era servir como <strong>evidência visual irrefutável</strong> dos Crimes Contra a Humanidade.
+                        </p>
+                        <p class="text-zinc-400 text-sm leading-relaxed border-l-2 border-red-800 pl-3 bg-red-950/10 p-3 rounded-r">
+                            O negacionismo histórico tenta minimizar estes horrores. O estudo de documentos primários em vídeo é a principal arma da educação contra o esquecimento.
+                        </p>
+                    </div>
+
+                    <div class="dossier-border p-6 rounded-lg bg-black">
+                        <h3 class="text-white font-bold font-cinzel text-xl mb-3 flex items-center gap-2">
+                            <i class="fas fa-quote-left text-zinc-600 text-sm"></i> A Ordem
+                        </h3>
+                        <p class="text-zinc-400 italic text-sm leading-relaxed">
+                            "Ordeno que tudo seja documentado (...) Porque em algum momento da história, algum bastardo vai se levantar e dizer que isso nunca aconteceu."
+                        </p>
+                        <p class="text-zinc-500 text-xs font-mono mt-3 uppercase tracking-widest text-right">
+                            - Gen. Dwight D. Eisenhower
+                        </p>
+                    </div>
                 </div>
             </div>
+        </section>
 
+        <div class="w-full h-px bg-zinc-800 my-20 relative">
+            <div class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-black px-4 text-zinc-600 font-mono text-sm tracking-widest">
+                ARQUIVO MILITAR
+            </div>
         </div>
 
-        <div class="w-full h-px bg-zinc-900 my-16"></div>
-
-        <!-- Texto de Contextualização Escolar -->
-        <section class="max-w-4xl mx-auto space-y-8 text-zinc-300 text-sm md:text-base leading-relaxed">
-            <h3 class="text-2xl text-white font-cinzel font-bold text-center mb-8">Contexto Histórico para Estudo</h3>
-            
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-[#0a0a0a] border border-zinc-800 p-6 rounded">
-                    <h4 class="text-white font-bold mb-3 flex items-center gap-2">
-                        <i class="fas fa-gavel text-red-700"></i> Prova Criminal
-                    </h4>
-                    <p>
-                        Este documentário não foi feito como entretenimento. Ele foi compilado às pressas em 1945 sob a supervisão do Diretor de Hollywood George Stevens, que servia no Exército. O objetivo era ser exibido exclusivamente no tribunal militar internacional em Nuremberg, servindo como <strong>evidência visual irrefutável</strong> dos Crimes Contra a Humanidade.
-                    </p>
-                </div>
-
-                <div class="bg-[#0a0a0a] border border-zinc-800 p-6 rounded">
-                    <h4 class="text-white font-bold mb-3 flex items-center gap-2">
-                        <i class="fas fa-camera text-red-700"></i> A Gravação
-                    </h4>
-                    <p>
-                        À medida que as tropas aliadas avançavam pela Europa, encontravam complexos de extermínio como Buchenwald, Dachau e Bergen-Belsen. Unidades de cinegrafistas militares foram instruídas a filmar tudo exatamente como encontraram: as vítimas, as valas comuns e a infraestrutura de morte, sem qualquer edição dramatizada.
-                    </p>
-                </div>
-            </div>
-
-            <div class="bg-zinc-900/30 p-6 border-l-4 border-zinc-600 mt-8">
-                <h4 class="text-white font-bold mb-2">Por que assistimos a isso hoje?</h4>
-                <p>
-                    O negacionismo histórico tenta minimizar ou apagar os horrores de regimes totalitários. O estudo de documentos primários em vídeo é a principal ferramenta de educação para combater o esquecimento. Assistir a essas imagens é um exercício doloroso, porém necessário, de humanidade e vigilância democrática.
+        <!-- PARTE II: FILMAGENS DE COMBATE (VÍDEOS LOCAIS DO UTILIZADOR) -->
+        <section id="combate" class="scroll-mt-32">
+            <header class="text-center mb-12">
+                <span class="text-zinc-500 font-bold tracking-widest text-xs md:text-sm uppercase font-mono"><i class="fas fa-camera-retro mr-2"></i> Documentos de Estudo (Brutos)</span>
+                <h2 class="text-3xl md:text-4xl text-white font-cinzel font-bold mt-4 mb-4">Filmagens Táticas e Geopolítica</h2>
+                <p class="text-zinc-400 max-w-2xl mx-auto text-sm">
+                    Estes registos visuais captam a máquina de guerra totalitária (da intimidação da força aérea ao avanço da infantaria e blindados) e, por fim, as dramáticas consequências do pós-guerra.
                 </p>
+            </header>
+
+            <!-- Grelha de Vídeos 2x2 -->
+            <div class="grid md:grid-cols-2 gap-10 lg:gap-12">
+                
+                <!-- Vídeo 1: Propaganda Aérea -->
+                <div class="space-y-4">
+                    <div class="video-vertical-wrapper relative group">
+                        <video controls preload="metadata" class="object-cover">
+                            <!-- FICHEIRO LOCAL -->
+                            <source src="ssstik.io_@hms_rodney1945_1781581308711.mp4" type="video/mp4">
+                            O seu navegador não suporta o elemento de vídeo.
+                        </video>
+                    </div>
+                    <div class="bg-[#0a0a0a] border border-zinc-800 p-5 rounded-lg shadow-lg">
+                        <h4 class="text-white font-bold mb-2 font-cinzel text-lg flex items-center gap-2">
+                            <i class="fas fa-plane text-zinc-500"></i> Propaganda Aérea (Luftwaffe)
+                        </h4>
+                        <p class="text-zinc-400 text-sm leading-relaxed">
+                            Filmagem militar real. Demonstração massiva de força da Força Aérea (Luftwaffe) a voar em formação estrita para desenhar o emblema do partido no céu. O objetivo era causar intimidação, terror psicológico e demonstrar um poderio bélico imparável ao povo e aos inimigos.
+                        </p>
+                        <div class="mt-3 flex gap-2">
+                            <span class="text-[10px] bg-zinc-900 text-zinc-500 px-2 py-1 rounded font-mono uppercase border border-zinc-800">Força Aérea</span>
+                            <span class="text-[10px] bg-zinc-900 text-zinc-500 px-2 py-1 rounded font-mono uppercase border border-zinc-800">Guerra Psicológica</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vídeo 2: Tropas e Rio -->
+                <div class="space-y-4">
+                    <div class="video-vertical-wrapper relative group">
+                        <video controls preload="metadata" class="object-cover">
+                            <!-- FICHEIRO LOCAL -->
+                            <source src="ssstik.io_@die3lite_1781580479375 (1).mp4" type="video/mp4">
+                            O seu navegador não suporta o elemento de vídeo.
+                        </video>
+                    </div>
+                    <div class="bg-[#0a0a0a] border border-zinc-800 p-5 rounded-lg shadow-lg">
+                        <h4 class="text-white font-bold mb-2 font-cinzel text-lg flex items-center gap-2">
+                            <i class="fas fa-water text-blue-800"></i> Avanço de Infantaria
+                        </h4>
+                        <p class="text-zinc-400 text-sm leading-relaxed">
+                            Cenas de tropas terrestres do Eixo em movimento rápido. Mostra claramente a utilização de botes pneumáticos para o cruzamento de obstáculos fluviais sob fumo de cobertura militar. Táticas de movimento rápido (infantaria motorizada) foram essenciais nas primeiras vitórias na Europa.
+                        </p>
+                        <div class="mt-3 flex gap-2">
+                            <span class="text-[10px] bg-zinc-900 text-zinc-500 px-2 py-1 rounded font-mono uppercase border border-zinc-800">Tática Militar</span>
+                            <span class="text-[10px] bg-zinc-900 text-zinc-500 px-2 py-1 rounded font-mono uppercase border border-zinc-800">Infantaria</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vídeo 3: Tanques Panzer -->
+                <div class="space-y-4">
+                    <div class="video-vertical-wrapper relative group">
+                        <video controls preload="metadata" class="object-cover">
+                            <!-- FICHEIRO LOCAL -->
+                            <source src="ssstik.io_@prodz_edits0_1781580466034 (1).mp4" type="video/mp4">
+                            O seu navegador não suporta o elemento de vídeo.
+                        </video>
+                    </div>
+                    <div class="bg-[#0a0a0a] border border-zinc-800 p-5 rounded-lg shadow-lg">
+                        <h4 class="text-white font-bold mb-2 font-cinzel text-lg flex items-center gap-2">
+                            <i class="fas fa-shield-alt text-zinc-600"></i> Guerra Blindada (Panzerwaffe)
+                        </h4>
+                        <p class="text-zinc-400 text-sm leading-relaxed">
+                            Filmagens de época a demonstrar o avanço de blindados (Panzers) e infantaria acompanhante em campo aberto. O uso massivo e coordenado de tanques agrupados (com forte uso de rádios) foi a espinha dorsal da doutrina da "Guerra Relâmpago", arrasando exércitos tradicionais.
+                        </p>
+                        <div class="mt-3 flex gap-2">
+                            <span class="text-[10px] bg-zinc-900 text-zinc-500 px-2 py-1 rounded font-mono uppercase border border-zinc-800">Guerra Mecanizada</span>
+                            <span class="text-[10px] bg-zinc-900 text-zinc-500 px-2 py-1 rounded font-mono uppercase border border-zinc-800">Blitzkrieg</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vídeo 4: Consequências / Israel -->
+                <div class="space-y-4">
+                    <div class="video-vertical-wrapper relative group border-red-900/50">
+                        <div class="absolute top-0 right-0 bg-red-800 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg tracking-widest z-20">O PÓS-GUERRA</div>
+                        <video controls preload="metadata" class="object-cover">
+                            <!-- FICHEIRO LOCAL -->
+                            <source src="ssstik.io_@alarabiyaprograms_1781581790059.mp4" type="video/mp4">
+                            O seu navegador não suporta o elemento de vídeo.
+                        </video>
+                    </div>
+                    <div class="bg-gradient-to-br from-[#0a0a0a] to-[#111] border border-red-900/30 p-5 rounded-lg shadow-lg">
+                        <h4 class="text-white font-bold mb-2 font-cinzel text-lg flex items-center gap-2">
+                            <i class="fas fa-globe-americas text-green-700"></i> O Impacto Geopolítico
+                        </h4>
+                        <p class="text-zinc-400 text-sm leading-relaxed">
+                            A derrota do totalitarismo e a revelação do Holocausto mudaram o mundo. Este documentário relata as profundas consequências destas tragédias: a migração massiva de refugiados e sobreviventes para a Palestina, a tensão gerada e a declaração do Estado de Israel em 1948.
+                        </p>
+                        <div class="mt-3 flex gap-2">
+                            <span class="text-[10px] bg-red-950/50 text-red-400 px-2 py-1 rounded font-mono uppercase border border-red-900/50">Geopolítica</span>
+                            <span class="text-[10px] bg-zinc-900 text-zinc-500 px-2 py-1 rounded font-mono uppercase border border-zinc-800">Consequências Históricas</span>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
 
@@ -252,27 +330,37 @@
     <!-- Footer Educacional -->
     <footer class="bg-black border-t border-zinc-900 py-10 mt-12">
         <div class="max-w-4xl mx-auto px-4 text-center">
-            <h3 class="text-lg font-cinzel text-zinc-400 font-bold mb-4 tracking-widest">PROJETO ESCOLAR: COMBATE AO ÓDIO</h3>
+            <h3 class="text-lg font-cinzel text-zinc-400 font-bold mb-4 tracking-widest">PROJETO ESCOLAR: MEMÓRIA HISTÓRICA</h3>
             <p class="text-zinc-600 text-xs md:text-sm max-w-2xl mx-auto font-mono">
-                Este portal foi criado exclusivamente para fins de pesquisa, estudo histórico e conscientização escolar. Repudiamos qualquer apologia ao extremismo, preconceito ou violência. O vídeo exibido pertence ao domínio público e está hospedado no <a href="https://archive.org" target="_blank" class="text-zinc-400 underline">Internet Archive</a>.
+                Este portal foi criado exclusivamente para fins de pesquisa, estudo histórico de táticas de guerra e consciencialização. Repudiamos qualquer apologia ao extremismo, preconceito ou violência.
             </p>
         </div>
     </footer>
 
     <script>
-        // Lógica do Gatekeeper
+        // Lógica do Gatekeeper para libertar a página após o consentimento
         const enterBtn = document.getElementById('enter-btn');
         const gatekeeper = document.getElementById('gatekeeper');
 
         enterBtn.addEventListener('click', () => {
-            // Transição visual de saída
+            // Transição visual de saída (fade out)
             gatekeeper.style.opacity = '0';
             
-            // Remove do DOM após a transição e libera o scroll
+            // Remove o gatekeeper e a classe que bloqueava o scroll (após 1 segundo)
             setTimeout(() => {
                 gatekeeper.style.display = 'none';
                 document.body.classList.remove('no-scroll');
-            }, 1000); // 1000ms condiz com a classe duration-1000 do Tailwind
+            }, 1000);
+        });
+
+        // Garantir que os vídeos param de tocar se o utilizador fechar ou mudar de separador
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                const videos = document.querySelectorAll('video');
+                videos.forEach(video => {
+                    video.pause();
+                });
+            }
         });
     </script>
 </body>
